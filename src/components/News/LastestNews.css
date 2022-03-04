@@ -1,0 +1,19 @@
+.news{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.news-wrapper {
+    overflow: hidden;
+    border-radius: 15px;
+  }
+  .inner-imageNews {
+    transition: 0.3s;
+    border-radius: 15px;
+  }
+  .inner-imageNews:hover {
+    transform: scale(1.6) !important;
+  }

@@ -1,0 +1,11 @@
+.image-wrapper {
+  overflow: hidden;
+  border-radius: 15px;
+}
+.inner-image {
+  transition: 0.3s;
+  border-radius: 15px;
+}
+.inner-image:hover {
+  transform: scale(1.6) !important;
+}

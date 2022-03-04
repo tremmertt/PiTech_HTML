@@ -1,0 +1,8 @@
+
+.tableCareer:nth-child(odd) {
+        background: #cfcfcf;
+      }
+      
+.tableCareer:nth-child(even) {
+        background: #9e9e9e;
+      }
