@@ -1,11 +1,14 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-scroll";
 import Slider from "react-slick";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import "./CarouselProduct.css";
 
 export default function CarouselProduct() {
   const slider = useRef(null);
   const [slideIndex, setSlideIndex] = useState(0);
+  const [swiper, setSwipper] = useState(null);
+  const [slide, setSlide] = useState(0);
 
   const slides = [
     {
@@ -98,6 +101,7 @@ export default function CarouselProduct() {
     vertical: true,
     verticalSwiping: true,
     arrows: false,
+    centerMode: true,
     responsive: [
       { breakpoint: 350, settings: { slidesToShow: 2 } },
       { breakpoint: 500, settings: { slidesToShow: 3 } },
@@ -129,44 +133,57 @@ export default function CarouselProduct() {
           style={{ width: "60%" }}
           key={index}
         >
-          <Link
+          {/* <Link
             activeClass="active"
             className="title"
             to="content"
             spy={true}
             smooth={true}
             duration={600}
+          > */}
+          <h3
+            className={
+              index.toString() === slideIndex.toString()
+                ? "text-blue-500 text-left"
+                : " text-left "
+            }
           >
-            <h3
-              className={
-                index === slideIndex ? "text-blue-400 text-left" : " text-left "
-              }
-            >
-              {" "}
-              <span
-                className={
-                  index === slideIndex
-                    ? "text-4xl  mx-3 font-extralight"
-                    : "text-xl mx-3 font-extralight"
-                }
-              >
-                {" "}
-                {slide.id}{" "}
-              </span>{" "}
-              {slide.name}{" "}
-            </h3>
-          </Link>
+            {" "}
+            <span> {slide.id} </span> {slide.name}{" "}
+          </h3>
+          {/* </Link> */}
         </div>
       );
     }
     return rows;
   }
 
+  function buildSwiper() {
+    const rowItems = [];
+    // for (let i = 0; i < 10; i += 1) {
+
+    for (const index in slides) {
+      const slide = slides[index];
+      rowItems.push(
+        <SwiperSlide key={`${index}`}>
+          <img src={require("../../img/NEEDFORSPEED-PAYBACK-EA.jpg")} alt="" />
+          <p className="mt-2">
+            {" "}
+            {slide.id}-{slide.name}{" "}
+          </p>
+        </SwiperSlide>
+      );
+    }
+    console.log(slides);
+    // }
+    return rowItems;
+  }
+
   function handleChangeSkill() {
     const currentSlide = slides[slideIndex];
     return (
       <div className="content grid grid-cols-3 sm:grid-cols-1">
-        <div className=" flex justify-center items-center col-span-3 md:col-span-1 sm:col-span-1  p-10">
+        <div className=" flex justify-center items-center col-span-3 md:col-span-1 sm:col-span-1 p-10">
           <h1 className=" pr-10 font-serif font-extrabold md:text-2xl sm:text-sm">
             {" "}
             KỸ NĂNG ĐẶC BIỆT :{" "}
@@ -223,7 +240,6 @@ export default function CarouselProduct() {
   //     </div>
   //   );
   // }
-
   function handleClick(slide) {
     const index = slides.findIndex((i) => i.id === slide.id);
     // console.log(slider, index);
@@ -232,9 +248,19 @@ export default function CarouselProduct() {
 
     // set state for slide index which slide is chosen
     setSlideIndex(index);
+    const element = document.getElementById("skill");
+    if (element)
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
+
+    swiper.slideTo(swiper.loopedSlides == 1 ? index + 1 : index + 2);
   }
   // console.log("omdex", slideIndex);
 
+  // console.log("sw", swiper);
   // function scrollToBottom() {
   //   props.scrollToBottom(10);
   // }
@@ -244,10 +270,10 @@ export default function CarouselProduct() {
       <div
         className="relative w-screen p-0 m-0"
         style={{
-          backgroundImage: `url(${"/img/background/agents-background.jpg"})`,
+          backgroundImage: `url(${"/img/ge-intro.png"})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          height: "700px",
+          height: "750px",
           width: "100vw",
         }}
       >
@@ -274,7 +300,85 @@ export default function CarouselProduct() {
         </div>
       </div>
 
-      {handleChangeSkill()}
+      {/* {handleChangeSkill()} */}
+      <div id="skill">
+        <Swiper
+          // navigation arrows
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }}
+          breakpoints={{
+            // when window width is >= 320px
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            // when window width is >= 480px
+            480: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            // when window width is >= 640px
+            640: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+          }}
+          className="mt-10"
+          loop={true}
+          scrollbar={{ draggable: true }}
+          onSlideChange={(swiper) => {
+            // console.log(
+            //   "Slide index changed to: ",
+            //   swiper.activeIndex,
+            //   slideIndex
+            // );
+            setSlide(swiper.activeIndex);
+          }}
+          onSwiper={(swiper) => setSwipper(swiper)}
+        >
+          {buildSwiper()}
+          <div
+            className="swiper-button-prev"
+            onClick={() => swiper.slidePrev()}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-10 w-10 text-white md:my-16"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"
+              />
+            </svg>
+          </div>
+          <div
+            className="swiper-button-next"
+            onClick={() => swiper.slideNext()}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-10 w-10 text-white md:my-16"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+        </Swiper>
+      </div>
     </div>
   );
 }

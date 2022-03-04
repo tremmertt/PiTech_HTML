@@ -1,4 +1,8 @@
 .slide-custom:hover {
-  color: red !important;
+  color: rgb(255, 0, 170) !important;
   cursor: "url('/img/laptop-screen.png') 4 4 !important";
+}
+
+.slick-list{
+  padding:0px !important;
 }

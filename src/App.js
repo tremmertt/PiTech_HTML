@@ -13,6 +13,7 @@ import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
 import { useEffect, useState } from "react";
 import DetailCareer from "./components/TableCareer/DetailCareer";
+import DetailNews from "./components/News/DetailNews";
 
 function App() {
   const [offset, setOffset] = useState(window.pageYOffset);
@@ -75,8 +76,9 @@ function App() {
           <Route path="/service" element={<Service />} animate={true} />
           <Route path="/product" element={<Product />} animate={true} />
           <Route path="/news" element={<News />} animate={true} />
+          <Route path="/detailnews" element={<DetailNews />} animate={true} />
           <Route path="/careers" element={<Careers />} animate={true} />
-          <Route path="/detail" element={<DetailCareer />} />
+          <Route path="/detail" element={<DetailCareer />} animate={true} />
           <Route path="/contact" element={<Contact />} animate={true} />
         </Routes>
         <Footer />

@@ -219,13 +219,13 @@ export default function Footer() {
     // </footer>
 
     <footer className="text-white bg-blue-600 body-font">
-      <div className="container px-6 py-18 mx-auto">
+      <div className="container px-6 py-24 mx-auto">
         <div className="flex flex-wrap md:text-left text-center ">
           <div className="lg:w-1/4 md:w-1/2 w-full px-4 text-center leading-10">
             <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
               CATEGORIES
             </h2>
-            <nav className="list-none mb-10">
+            <nav className="list-none mb-10 lg:text-center sm:text-left">
               <li className="hover:font-extrabold hover:text-md">
                 <Link to="/" className="text-white ">
                   Home
@@ -268,9 +268,9 @@ export default function Footer() {
             <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
               CATEGORIES
             </h2>
-            <nav className="list-none mb-10">
+            <div className="list-none text-left mb-10">
               <li>
-                <div>
+                <div className="flex">
                   <img
                     className="w-auto h-6 mt-2 pr-3"
                     src={require("../../img/Footer/home.png")}
@@ -309,15 +309,15 @@ export default function Footer() {
                   </span>
                 </div>
               </li>
-            </nav>
+            </div>
           </div>
 
           <div className="lg:w-1/4 md:w-1/2 w-full px-4 text-center leading-10">
             <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
               SOCIAL
             </h2>
-            <nav className="list-none mb-10 ">
-              <li className="flex justify-center xs:justify-start">
+            <div className="list-none flex flex-row justify-around mb-10 ">
+              <li className=" xs:justify-start">
                 <div className="my-5 text-white">
                   <a>
                     <svg
@@ -368,7 +368,7 @@ export default function Footer() {
                 </div>
               </li>
               <li className="flex justify-center xs:justify-start">
-                <div className="text-white mb-5">
+                <div className="text-white my-5">
                   <a>
                     <svg
                       fill="currentColor"
@@ -388,10 +388,10 @@ export default function Footer() {
                   </a>
                 </div>
               </li>
-            </nav>
+            </div>
           </div>
 
-          <div className="lg:w-1/4 md:w-1/2 w-full px-4 py-7 text-left xs:text-center leading-loose order-first">
+          <div className="lg:w-1/4 md:w-1/2 w-full px-4 py-2 text-left xs:text-center leading-loose order-first">
             <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
               <img
                 className="h-auto xs:w-20 w-1/4"
@@ -400,12 +400,15 @@ export default function Footer() {
               />
               <span className="ml-4 mb-18 text-2xl text-white">PI TECH</span>
             </a>
-            <p className="text-md font-extralight py-3">
+            <p className="text-md text-left font-extralight py-3">
               Pi Solution là công ty hàng đầu cung cấp giải pháp công nghệ,
               marketing và dịch vụ sản xuất trong nhiều lĩnh vực{" "}
             </p>
-            <h4 className="text-md font-extralight pb-2"> PI SOLUTION </h4>
-            <p className="text-md font-light pb-2">
+            <h4 className="text-md text-left font-extralight pb-2">
+              {" "}
+              PI SOLUTION{" "}
+            </h4>
+            <p className="text-md text-left font-light pb-2">
               {" "}
               SÁNG TẠO - CHẤT LƯỢNG - UY TÍN{" "}
             </p>

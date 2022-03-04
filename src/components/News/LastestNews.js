@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
+import { Link } from "react-router-dom";
 import "./LastestNews.css";
 
 export default function LastestNews() {
@@ -48,9 +49,8 @@ export default function LastestNews() {
                 zIndex: "10",
               }}
             >
-              <h3 className="font-mono text-xl sm:text-md font-thin ">
-                {" "}
-                FEB 23, 2022{" "}
+              <h3 className="font-mono text-xl sm:text-md font-thin hover:underline ">
+                <Link to="/detailnews">FEB 23, 2022</Link>
               </h3>
               <p className="text-left"> pitest 5 </p>
               <small> pitest 5</small>
